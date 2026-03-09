@@ -1,8 +1,11 @@
 import { useState, type SyntheticEvent } from 'react';
 import './ChatBot.css'; 
 
+// Define Message type outside the component
+export type Message = { sender: 'user' | 'bot'; text: string };
+
 const ChatBot = () => {
-  const [messages, setMessages] = useState<{ sender: 'user' | 'bot'; text: string }[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -12,8 +15,7 @@ const ChatBot = () => {
     if (!input.trim()) return; // Don't send empty messages
 
     // Add user message to chat
-    const userMessage = { sender: 'user', text: input };
-    setMessages((prev) => [...prev, userMessage]);
+    setMessages((prev) => [...prev, { sender: 'user', text: input }]);
     setInput('');
     setError(null);
     setLoading(true);
@@ -33,7 +35,7 @@ const ChatBot = () => {
       }
 
       const data = await response.json();
-      const botMessage = { sender: 'bot', text: data?.reply || 'No response' };
+      const botMessage: Message = { sender: 'bot', text: data?.reply || 'No response' };
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
       console.error('Chatbot error:', error);
@@ -71,4 +73,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;      
+export default ChatBot;
