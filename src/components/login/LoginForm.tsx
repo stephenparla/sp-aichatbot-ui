@@ -1,10 +1,10 @@
 import { useState, type SyntheticEvent } from 'react';
-import './LoginForm.css'; 
-import ChatBot from '../chatbot/ChatBot';
+import './LoginForm.css';
+import Home from '../home/Home';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('username');
+  const [password, setPassword] = useState<string>('password');
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -13,40 +13,20 @@ const LoginForm = () => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-    // Handle login logic (e.g., fetch to your backend API)
-    try {
-      const response = await fetch('http://localhost:8080/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
 
-      if (!response.ok) {
-        // You can inspect response.status or the response body for better error messages
-        setError('Login failed — please check your credentials.');
-        setLoading(false);
-        return;
-      }
-
-      const data = await response.json();
-      // Example: store token if your backend returns one
-      if (data?.token) {
-        localStorage.setItem('authToken', data.token);
-      }
-
-      // Mark as logged in and render chat landing
-      setLoggedIn(true);
+    if (!username.trim() || !password.trim()) {
+      setError('Username and password are required.');
       setLoading(false);
-      console.log('Login successful:', data);
-    } catch (error) {
-      console.error('Login failed:', error);
-      setError('Login failed — network or server error.');
-      setLoading(false);
+      return;
     }
+
+    // Successful login leads to Home (the chatbot tile has the fetch call)
+    setLoggedIn(true);
+    setLoading(false);
   };
 
   if (loggedIn) {
-    return <ChatBot />;
+    return <Home />;
   }
 
   return (

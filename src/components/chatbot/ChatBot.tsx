@@ -1,7 +1,6 @@
-import { useState, type SyntheticEvent } from 'react';
-import './ChatBot.css'; 
+import { useEffect, useRef, useState, type SyntheticEvent } from 'react';
+import './ChatBot.css';
 
-// Define Message type outside the component
 export type Message = { sender: 'user' | 'bot'; text: string };
 
 const ChatBot = () => {
@@ -9,37 +8,48 @@ const ChatBot = () => {
   const [input, setInput] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const transcriptRef = useRef<HTMLTextAreaElement>(null);
+
+  const transcript =
+    messages.map((m) => `${m.sender === 'user' ? 'user' : 'bot'}: ${m.text}`).join('\n') +
+    (loading ? '\nbot: ...' : '');
+
+  useEffect(() => {
+    if (transcriptRef.current) {
+      transcriptRef.current.scrollTop = transcriptRef.current.scrollHeight;
+    }
+  }, [transcript]);
 
   const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input.trim()) return; // Don't send empty messages
+    if (!input.trim()) return;
 
-    // Add user message to chat
-    setMessages((prev) => [...prev, { sender: 'user', text: input }]);
+    const userText = input.trim();
+    setMessages((prev) => [...prev, { sender: 'user', text: userText }]);
     setInput('');
     setError(null);
     setLoading(true);
 
     try {
-      // Send message to backend API
-      const response = await fetch('http://localhost:8080/chat', {
+      const response = await fetch('http://localhost:8080/api/aichat/prompt', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Basic ${btoa('sparla:password1')}`,
+        },
+        body: JSON.stringify({ message: userText }),
       });
 
       if (!response.ok) {
-        setError('Failed to get response from chatbot.');
-        setLoading(false);
+        setError('Failed to get response from Chat Bot.');
         return;
       }
 
       const data = await response.json();
-      const botMessage: Message = { sender: 'bot', text: data?.reply || 'No response' };
-      setMessages((prev) => [...prev, botMessage]);
-    } catch (error) {
-      console.error('Chatbot error:', error);
-      setError('Network or server error while communicating with chatbot.');
+      setMessages((prev) => [...prev, { sender: 'bot', text: data?.reply || 'No response' }]);
+    } catch (err) {
+      console.error('Chat Bot error:', err);
+      setError('Network or server error while communicating with Chat Bot.');
     } finally {
       setLoading(false);
     }
@@ -47,15 +57,14 @@ const ChatBot = () => {
 
   return (
     <div className="chatbot-wrapper">
-      <h1>ChatBot</h1>
-      <div className="chat-window">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`}>
-            {msg.text}
-          </div>
-        ))}
-        {loading && <div className="message bot">...</div>}
-      </div>
+      <h2>Chat Bot</h2>
+      <textarea
+        ref={transcriptRef}
+        className="chat-transcript"
+        readOnly
+        value={transcript}
+        placeholder="Conversation will appear here..."
+      />
       {error && <div className="chat-error">{error}</div>}
       <form onSubmit={handleSubmit} className="chat-input-form">
         <input
