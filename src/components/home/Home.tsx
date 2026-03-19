@@ -97,7 +97,7 @@ const Home = () => {
       <div className="active-component-container">{renderActiveComponent()}</div>
 
       <footer className="home-footer">
-        <span>Professional Workspace</span>
+        <span>Portfolio</span>
         <span>Chat, models, agents, and analytics in one workspace</span>
       </footer>
     </div>
