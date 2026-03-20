@@ -4,6 +4,9 @@ import BasicModel from '../basic_model/BasicModel';
 import './Home.css';
 
 type ViewType = 'none' | 'chatbot' | 'basic_model' | 'agent' | 'dashboard';
+type HomeProps = {
+  onLogout?: () => void;
+};
 
 const ChatbotPlaceholder = () => (
   <div className="future-placeholder">
@@ -19,7 +22,7 @@ const AnalyticsPlaceholder = () => (
   </div>
 );
 
-const Home = () => {
+const Home = ({ onLogout }: HomeProps) => {
   const [activeView, setActiveView] = useState<ViewType>('none');
   const [error, setError] = useState<string | null>(null);
 
@@ -51,7 +54,14 @@ const Home = () => {
             A single place for chat, models, agents, and analytics.
           </p>
         </div>
-        <div className="home-header-badge">Smart Tools Hub</div>
+        <div className="home-header-actions">
+          <div className="home-header-badge">Smart Tools Hub</div>
+          {onLogout && (
+            <button type="button" className="home-logout-button" onClick={onLogout}>
+              Logout
+            </button>
+          )}
+        </div>
       </header>
 
       <div className="tile-grid">
