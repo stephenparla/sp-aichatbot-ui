@@ -60,7 +60,7 @@ const LoginForm = () => {
       <div className="login-wrapper">
         <p className="login-kicker">Secure Sign In</p>
         <h1>Login</h1>
-        <p className="login-subtitle">Use your credentials to open the Skill Hub workspace.</p>
+        <p className="login-subtitle">Use your credentials to open the Professional Hub workspace.</p>
         <form onSubmit={handleSubmit}>
           {error && <div className="login-error">{error}</div>}
           <label>
