@@ -39,7 +39,7 @@ const LoginForm = () => {
       <section className="login-visual-panel" aria-hidden="true">
         <div className="login-visual-copy">
           <p className="login-kicker">AI Workspace</p>
-          <h2>Pro Hub Access</h2>
+          <h2>The Pro Hub Access</h2>
           <p>
             Enter the workspace used for chat, models, agent workflows, and analytics in one
             corporate-ready environment.
@@ -60,7 +60,7 @@ const LoginForm = () => {
       <div className="login-wrapper">
         <p className="login-kicker">Secure Sign In</p>
         <h1>Login</h1>
-        <p className="login-subtitle">Use your credentials to open the Pro Hub workspace.</p>
+        <p className="login-subtitle">Use your credentials to open the Skill Hub workspace.</p>
         <form onSubmit={handleSubmit}>
           {error && <div className="login-error">{error}</div>}
           <label>

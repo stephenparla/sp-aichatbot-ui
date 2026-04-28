@@ -49,7 +49,7 @@ const Home = ({ onLogout }: HomeProps) => {
       <header className="home-header">
         <div className="home-header-copy">
           <p className="home-kicker">AI Workspace</p>
-          <h1>Pro Hub</h1>
+          <h1>The Professional Hub</h1>
           <p className="home-subtitle">
             A single place for chat, models, agents, and analytics.
           </p>
