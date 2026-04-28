@@ -39,7 +39,7 @@ const LoginForm = () => {
       <section className="login-visual-panel" aria-hidden="true">
         <div className="login-visual-copy">
           <p className="login-kicker">AI Workspace</p>
-          <h2>The Pro Hub Access</h2>
+          <h2>The Professional Hub Access</h2>
           <p>
             Enter the workspace used for chat, models, agent workflows, and analytics in one
             corporate-ready environment.
