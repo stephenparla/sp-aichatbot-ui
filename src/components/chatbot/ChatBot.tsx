@@ -37,6 +37,7 @@ const ChatBot = () => {
   }, [messages, loading]);
 
   const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
+    const token = sessionStorage.getItem('hub_token'); // Pull from storage
     e.preventDefault();
     if (!input.trim()) return;
 
@@ -51,7 +52,7 @@ const ChatBot = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Basic ${btoa('sparla:password1')}`,
+          Authorization: token || '',
         },
         body: JSON.stringify({ message: userText }),
       });
