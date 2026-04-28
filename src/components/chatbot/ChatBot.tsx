@@ -47,7 +47,7 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://${API_URL}/api/aichat/prompt', {
+      const response = await fetch(`${API_URL}/api/aichat/prompt`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
