@@ -3,6 +3,8 @@ import './ChatBot.css';
 
 export type Message = { sender: 'user' | 'bot'; text: string };
 
+const API_URL = import.meta.env.VITE_API_BASE_URL;
+
 const toDisplayText = (value?: string): string => {
   if (!value) return 'No response';
 
@@ -45,7 +47,7 @@ const ChatBot = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8080/api/aichat/prompt', {
+      const response = await fetch('http://${API_URL}/api/aichat/prompt', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
