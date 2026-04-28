@@ -2,7 +2,7 @@ name: ui
 type: Static Site
 
 files:
-  source: dist
+  - source: dist
 
 http:
   alias: theprohub.org
