@@ -6,6 +6,7 @@ files:
 
 http:
   alias: theprohub.org
+  certificate: arn:aws:acm:us-east-1:470276446935:certificate/f14116f3-029d-4c6b-9be9-e0d553c75d39
   error_pages:
     - status_code: 404
       response_page_path: /index.html
