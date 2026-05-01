@@ -5,7 +5,7 @@ files:
   - source: dist
 
 http:
-  alias: theprohub.org
+  alias: skillhub24.com
   certificate: arn:aws:acm:us-east-1:470276446935:certificate/4dd3d596-7cc1-4051-a822-65710a1bc2c0
   error_pages:
     - status_code: 404
