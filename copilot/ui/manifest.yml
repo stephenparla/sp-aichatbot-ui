@@ -7,6 +7,9 @@ files:
 http:
   alias: skillhub24.com
   certificate: arn:aws:acm:us-east-1:470276446935:certificate/4dd3d596-7cc1-4051-a822-65710a1bc2c0
+  static_assets:
+    location: dist
+    error_page: index.html 
   error_pages:
     - status_code: 404
       response_page_path: /index.html
