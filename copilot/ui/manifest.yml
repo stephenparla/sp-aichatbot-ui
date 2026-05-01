@@ -10,3 +10,5 @@ http:
     - status_code: 404
       response_page_path: /index.html
       response_code: 200
+variables:
+  VITE_API_URL: https://skillhub24.com/chatbot
