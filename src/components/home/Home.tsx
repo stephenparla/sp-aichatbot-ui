@@ -4,6 +4,9 @@ import BasicModel from '../basic_model/BasicModel';
 import './Home.css';
 
 type ViewType = 'none' | 'chatbot' | 'basic_model' | 'agent' | 'dashboard';
+type HomeProps = {
+  onLogout?: () => void;
+};
 
 const ChatbotPlaceholder = () => (
   <div className="future-placeholder">
@@ -19,7 +22,7 @@ const AnalyticsPlaceholder = () => (
   </div>
 );
 
-const Home = () => {
+const Home = ({ onLogout }: HomeProps) => {
   const [activeView, setActiveView] = useState<ViewType>('none');
   const [error, setError] = useState<string | null>(null);
 
@@ -46,12 +49,19 @@ const Home = () => {
       <header className="home-header">
         <div className="home-header-copy">
           <p className="home-kicker">AI Workspace</p>
-          <h1>Pro Hub</h1>
+          <h1>The Professional Hub</h1>
           <p className="home-subtitle">
             A single place for chat, models, agents, and analytics.
           </p>
         </div>
-        <div className="home-header-badge">Smart Tools Hub</div>
+        <div className="home-header-actions">
+          <div className="home-header-badge">Smart Tools Hub</div>
+          {onLogout && (
+            <button type="button" className="home-logout-button" onClick={onLogout}>
+              Logout
+            </button>
+          )}
+        </div>
       </header>
 
       <div className="tile-grid">
@@ -97,7 +107,7 @@ const Home = () => {
       <div className="active-component-container">{renderActiveComponent()}</div>
 
       <footer className="home-footer">
-        <span>Professional Workspace</span>
+        <span>Portfolio</span>
         <span>Chat, models, agents, and analytics in one workspace</span>
       </footer>
     </div>

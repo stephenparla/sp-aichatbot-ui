@@ -49,6 +49,29 @@
   white-space: nowrap;
 }
 
+.home-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.home-logout-button {
+  border: 1px solid rgba(11, 59, 117, 0.18);
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  background: rgba(255, 255, 255, 0.92);
+  color: #0b3b75;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.home-logout-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(11, 59, 117, 0.15);
+  background: #ffffff;
+}
+
 .tile-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -179,6 +202,11 @@
   .home-footer {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .home-header-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .tile-grid {

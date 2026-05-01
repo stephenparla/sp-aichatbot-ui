@@ -14,6 +14,12 @@ describe('Home component', () => {
     expect(screen.getByRole('button', { name: /analytics/i })).toBeInTheDocument();
   });
 
+  it('renders logout button when logout handler is provided', () => {
+    render(<Home onLogout={() => {}} />);
+
+    expect(screen.getByRole('button', { name: /logout/i })).toBeInTheDocument();
+  });
+
   it('renders Chat Bot component when Chat Bot tile is clicked', async () => {
     render(<Home />);
 
