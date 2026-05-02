@@ -24,6 +24,7 @@ const LoginForm = () => {
         const response = await fetch(LAMBDA_URL);
         if (response.ok) {
           const data = await response.json();
+          console.log("Lambda Data Received:", data);
           setUserCount(data.totalUsers + 6); // Save the integer from Lambda
         }
       } catch (err) {
