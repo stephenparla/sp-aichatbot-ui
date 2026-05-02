@@ -12,10 +12,10 @@ const LoginForm = () => {
   const API_URL = import.meta.env.VITE_API_BASE_URL;
 
   
-  const [userCount, setUserCount] = useState<number | null>(6); // State to store the count
+  const [userCount, setUserCount] = useState<number | null>(null); // State to store the count
 
   // 1. Point this directly to your generated AWS Lambda URL
-  const LAMBDA_URL = "https://on.aws";
+  const LAMBDA_URL = import.meta.env.VITE_LAMBDA_URL;
 
   // 2. Fetch the count on page load
   useEffect(() => {
