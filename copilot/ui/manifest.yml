@@ -1,8 +1,8 @@
 name: ui
 type: Static Site
 http:
-  alias: skillhub24.com
-  certificate: arn:aws:acm:us-east-1:470276446935:certificate/4dd3d596-7cc1-4051-a822-65710a1bc2c0
+  alias: portfolio.bubble-sort.com
+  certificate: arn:aws:acm:us-east-1:470276446935:certificate/26b1bfbf-8301-4f93-8b3d-39bed628e306
   static_assets:
     location: dist
     error_page: index.html 
@@ -11,4 +11,4 @@ http:
       response_page_path: /index.html
       response_code: 200
 variables:
-  VITE_API_URL: https://skillhub24.com/chatbot
+  VITE_API_BASE_URL: https://dw5f8c5zq1b0o.cloudfront.net/chatbot
