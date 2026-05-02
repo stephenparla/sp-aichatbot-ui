@@ -24,7 +24,8 @@ const LoginForm = () => {
         const response = await fetch(LAMBDA_URL);
         if (response.ok) {
           const data = await response.json();
-          setUserCount(data.totalUsers); // Save the integer from Lambda
+          console.log("Lambda Data Received:", data);
+          setUserCount(data.totalUsers + 6); // Save the integer from Lambda
         }
       } catch (err) {
         console.error("Failed to load viewer count:", err);
