@@ -12,3 +12,4 @@ http:
       response_code: 200
 variables:
   VITE_API_BASE_URL: https://dw5f8c5zq1b0o.cloudfront.net/chatbot
+  VITE_LAMBDA_URL: https://5i2fx63l6pwwnzo2cjt73k7phu0agkbh.lambda-url.us-east-1.on.aws/
