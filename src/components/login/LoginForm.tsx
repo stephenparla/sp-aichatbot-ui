@@ -50,6 +50,7 @@ const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     // 2. Generate the Token (This is what Spring Security expects)
     const token = btoa(`${username}:${password}`);
     const authHeader = `Basic ${token}`;
+    const sessionToken = crypto.randomUUID();
 
     // 3. The "Comparison" Handshake
     // We hit /ping because it's lightweight and returns 200 if Auth is correct
@@ -64,6 +65,7 @@ const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
       // ✅ SUCCESS: The credentials matched the AWS Secrets in the Backend
       // Save the token so the ChatBot component can use it later
       sessionStorage.setItem('hub_token', authHeader);
+      sessionStorage.setItem('sessionID', sessionToken); // Optionally save the username too
       setLoggedIn(true);
     } else {
       // FAILURE: Backend rejected the credentials
@@ -79,6 +81,7 @@ const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
 
 const handleLogout = () => {
 sessionStorage.removeItem('hub_token'); // Clear the secret
+sessionStorage.removeItem('sessionID'); // Clear the username if you saved it
 setLoggedIn(false);
 setError(null);
 };
