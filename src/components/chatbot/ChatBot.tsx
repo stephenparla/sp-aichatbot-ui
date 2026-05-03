@@ -38,6 +38,7 @@ const ChatBot = () => {
 
   const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
     const token = sessionStorage.getItem('hub_token'); // Pull from storage
+    const sessionToken = sessionStorage.getItem('sessionID') ?? ''; // Pull from storage
     e.preventDefault();
     if (!input.trim()) return;
 
@@ -52,6 +53,7 @@ const ChatBot = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'X-Session-ID': sessionToken, // Pass the token in a custom header
           Authorization: token || '',
         },
         body: JSON.stringify({ message: userText }),
