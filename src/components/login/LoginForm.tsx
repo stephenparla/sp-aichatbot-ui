@@ -3,8 +3,8 @@ import './LoginForm.css';
 import Home from '../home/Home';
 
 const LoginForm = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>('guestuser');
+  const [password, setPassword] = useState<string>('guestpassword');
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -17,9 +17,7 @@ const LoginForm = () => {
   // 1. Point this directly to your generated AWS Lambda URL
   const LAMBDA_URL = import.meta.env.VITE_LAMBDA_URL;
 
-  // 2. Fetch the count on page load
-  useEffect(() => {
-    const fetchCount = async () => {
+  const fetchCount = async () => {
       try {
         const response = await fetch(LAMBDA_URL , {
           method: 'GET',
@@ -30,12 +28,15 @@ const LoginForm = () => {
           const data = await response.json();
           console.log("Lambda Data Received:", data);
 
-          setUserCount(data.count); 
+          setUserCount(data.total_users); // Adjust this if your Lambda returns a different structure
         }
       } catch (err) {
         console.error("Failed to load viewer count:", err);
       }
-    };
+  };
+
+  // 2. Fetch the count on page load
+  useEffect(() => {
     fetchCount();
   }, []);
 
@@ -63,7 +64,8 @@ const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
       method: 'GET',
       headers: {
         'Authorization': authHeader
-      }
+      },
+      credentials: 'same-origin' 
     });
 
     if (response.ok) {
@@ -89,6 +91,7 @@ sessionStorage.removeItem('hub_token'); // Clear the secret
 sessionStorage.removeItem('sessionID'); // Clear the username if you saved it
 setLoggedIn(false);
 setError(null);
+fetchCount(); // Refresh the count on logout as well
 };
 
   if (loggedIn) {
@@ -100,7 +103,7 @@ setError(null);
       <section className="login-visual-panel" aria-hidden="true">
         <div className="login-visual-copy">
           <p className="login-kicker">AI Workspace</p>
-          <h2>Portfolio Access</h2>
+          <h2>Portfolio</h2>
           <p>
             Enter the workspace used for chat, models, agent workflows, and analytics in one
             corporate-ready environment.
