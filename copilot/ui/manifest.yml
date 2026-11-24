@@ -1,8 +1,12 @@
 name: ui
 type: Static Site
+
 http:
-  alias: portfolio.bubble-sort.com
-  certificate: arn:aws:acm:us-east-1:470276446935:certificate/26b1bfbf-8301-4f93-8b3d-39bed628e306
+  alias: portfolio.bubblesortai.com
+  certificate: arn:aws:acm:us-east-1:470276446935:certificate/2c867c0e-64eb-4676-91b6-7d2326728a6d
+# http:
+#   alias: portfolio.bubble-sort.com
+#   certificate: arn:aws:acm:us-east-1:470276446935:certificate/26b1bfbf-8301-4f93-8b3d-39bed628e306
   static_assets:
     location: dist
     error_page: index.html 
