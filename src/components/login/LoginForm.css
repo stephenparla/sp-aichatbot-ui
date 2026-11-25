@@ -200,6 +200,18 @@
   font-size: 0.92rem;
 }
 
+.login-corporate-link {
+  display: inline-flex;
+  margin-bottom: 1.1rem;
+  color: #9bb9d2;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.login-corporate-link:hover { color: #d9eaf7; }
+
 @media (max-width: 980px) {
   .login-page {
     grid-template-columns: 1fr;

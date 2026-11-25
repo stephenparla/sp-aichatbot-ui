@@ -161,6 +161,25 @@
   font-weight: 700;
 }
 
+.home-corporate-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 1rem;
+  border: 1px solid #31577d;
+  border-radius: 999px;
+  background: #0d2037;
+  color: #b8cbe0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.home-corporate-link:hover {
+  color: #eaf4ff;
+  border-color: #67aef0;
+}
+
 @media (max-width: 1168px) {
   .home-wrapper {
     width: calc(100% - 36px);

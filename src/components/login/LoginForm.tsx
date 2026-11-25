@@ -112,13 +112,14 @@ fetchCount(); // Refresh the count on logout as well
 
   return (
     <div className="login-page">
-      <section className="login-visual-panel" aria-hidden="true" style={{
+      <section className="login-visual-panel" style={{
         backgroundImage: `linear-gradient(180deg, rgba(7, 20, 38, 0.34), rgba(7, 20, 38, 0.82)), url(${portfolioImage})`,
         backgroundSize: 'contain',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat'
       }}>
         <div className="login-visual-copy">
+          <a className="login-corporate-link" href="https://bubblesortai.com/">BubbleSort AI ↗</a>
           <p className="login-kicker">AI Workspace</p>
           <h2>Portfolio</h2>
           <p>

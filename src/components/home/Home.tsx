@@ -55,6 +55,7 @@ const Home = ({ onLogout }: HomeProps) => {
           </p>
         </div>
         <div className="home-header-actions">
+          <a className="home-corporate-link" href="https://bubblesortai.com/">BubbleSort AI ↗</a>
           <div className="home-header-badge">Smart Tools Hub</div>
           {onLogout && (
             <button type="button" className="home-logout-button" onClick={onLogout}>
