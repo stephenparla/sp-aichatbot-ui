@@ -1,17 +1,39 @@
+/* BubbleSort portfolio theme */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bs-bg: #071426;
+  --bs-panel: #0d2037;
+  --bs-panel-soft: #102943;
+  --bs-text: #edf4fc;
+  --bs-muted: #9aadc2;
+  --bs-blue: #55a7ff;
+  --bs-cyan: #69d6e8;
+  --bs-green: #62d6ae;
+  --bs-line: rgba(151, 181, 213, 0.16);
+  --bs-font: "DM Sans", Arial, sans-serif;
+  --bs-display: "Manrope", Arial, sans-serif;
+  color: var(--bs-text);
+  background: var(--bs-bg);
+  font-family: var(--bs-font);
 }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(21, 81, 139, 0.18), transparent 38%),
+    var(--bs-bg);
+  color: var(--bs-text);
+}
+body, button, input, textarea { font-family: var(--bs-font); }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: var(--bs-display); }
+button, input, textarea { font: inherit; }
+::selection { background: rgba(85, 167, 255, 0.35); color: #fff; }
+:focus-visible { outline: 2px solid var(--bs-cyan); outline-offset: 3px; }
 
 a {
   font-weight: 500;
