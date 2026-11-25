@@ -76,7 +76,7 @@ const handleSubmit = async (e: SyntheticEvent<HTMLFormElement>) => {
       setLoggedIn(true);
     } else {
       // FAILURE: Backend rejected the credentials
-      setError('Invalid username or password.');
+      setError('System currently unavailable.');
     }
   } catch (err) {
     // NETWORK ERROR: Backend is down or CORS is blocked
